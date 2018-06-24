@@ -59,22 +59,12 @@ terranUnits.forEach(function (unit) {
     unitTypesDiv.append(span);
 });
 
-//function to move all objects onclick except clicked
-
-
-/*  not working
-
-$("#allUnits.clickableUnits").on("click", function () {
-    $("#allUnits").appendTo("#enemyChoiceArea");
-})
-
-*/
-
 //working function moves objects except clicked
 //new object has ".clickableUnits" "#unit.name" "#playerSelected"
 $(".clickableUnits").on("click", function() {
     this.setAttribute("id", "playerSelected");
-    $("#selected").appendTo("#playerChoiceArea");
+    $("#playerSelected").appendTo("#playerChoiceArea");
     $(".clickableUnits").not("#playerSelected").appendTo("#enemyChoiceArea");
+    $("#instructions").remove();
 })
 
