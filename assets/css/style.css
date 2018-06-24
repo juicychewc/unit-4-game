@@ -1,0 +1,22 @@
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+    }
+
+.clickableUnits {
+    display: block;
+    border: 3px solid lightgreen;
+    width: 150px;
+    float: left;
+    background: black;
+    color: yellowgreen;
+    font-size: 18px;
+    font-weight: bolder;
+    text-align: center;
+    margin: 5px;
+}
+
+img {
+    width: 100%;
+}
