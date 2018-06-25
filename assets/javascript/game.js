@@ -45,7 +45,7 @@ var unitTypesDiv = $("#allUnits");
 //This generates a span for each object in the array
 terranUnits.forEach(function (unit) {
     var span = document.createElement("span");
-    span.setAttribute("class", "clickableUnits")
+    span.setAttribute("class", "initialClickPointer clickableUnits")
     span.setAttribute("id", unit.name);
     var nameLabel = document.createElement("p");
     nameLabel.textContent = unit.displayName;
@@ -59,12 +59,23 @@ terranUnits.forEach(function (unit) {
     unitTypesDiv.append(span);
 });
 
-//working function moves objects except clicked
-//new object has ".clickableUnits" "#unit.name" "#playerSelected"
-$(".clickableUnits").on("click", function() {
-    this.setAttribute("id", "playerSelected");
-    $("#playerSelected").appendTo("#playerChoiceArea");
-    $(".clickableUnits").not("#playerSelected").appendTo("#enemyChoiceArea");
+//first object click
+$(".initialClickPointer").on("click", function() {
+    this.setAttribute("class", "clickableUnits playerSelected");
+    $(".clickableUnits").removeClass("initialClickPointer");
+    $(".playerSelected").appendTo("#playerChoiceArea");
+    $(".clickableUnits").not(".playerSelected").addClass("enemyUnits");
+    $(".enemyUnits").appendTo("#enemyChoiceArea");
     $("#instructions").remove();
-})
+    $("#allUnits").remove();
+    $(".initialZoneSpacing").remove();
+});
 
+//opponent selector
+$(".enemyUnits").on("click", function() {
+    this.setAttribute("class", "clickableUnits enemyUnits currentOpponent");
+    $(".currentOpponent").appendTo("#battleZone");
+    var fightButton = document.createElement("button");
+    button.setAttribute("class", "fightButton");
+    fightButton.prepend("battlezone");
+});

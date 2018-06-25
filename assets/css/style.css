@@ -4,9 +4,13 @@
     clear: both;
     }
 
+body {
+    background-image: url("../images/backdrop.jpg");
+}
+
 .clickableUnits {
     display: block;
-    border: 3px solid lightgreen;
+    border: 3px solid cyan;
     width: 150px;
     float: left;
     background: black;
@@ -17,6 +21,31 @@
     margin: 5px;
 }
 
+.playerSelected {
+    border-color: lightgreen;
+}
+
+.enemyUnits {
+    border-color: red;
+}
+
 img {
     width: 100%;
+}
+
+h1 {
+    color: white;
+}
+
+h2 {
+    color: white;
+}
+
+#instructions {
+    color: orange;
+    font-size: 30px;
+    font-weight: bolder;
+    padding: 10px;
+    background-color: black;
+    width: 17%;
 }
