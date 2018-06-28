@@ -29,6 +29,15 @@ body {
     border-color: red;
 }
 
+.fightButton {
+    padding: 10px 50px;
+    background-color: red;
+    color: white;
+    margin-left: 20px;
+    text-align: center;
+    font-weight: bolder;
+}
+
 img {
     width: 100%;
 }
