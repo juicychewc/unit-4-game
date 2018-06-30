@@ -1,6 +1,6 @@
-var terranUnits = [
+var terranUnits = {
 
-    terranMarine = {
+    terranMarine: {
         name: "terranMarine",
         displayName: "Marine",
         healthPoints: 200,
@@ -9,7 +9,7 @@ var terranUnits = [
         image: "assets/images/marine.jpg"
     },
 
-    terranGhost = {
+    terranGhost: {
         name: "terranGhost",
         displayName: "Ghost",
         healthPoints: 450,
@@ -18,7 +18,7 @@ var terranUnits = [
         image: "assets/images/ghost.jpg"
     },
 
-    terranGoliath = {
+    terranGoliath: {
         name: "terranGoliath",
         displayName: "Goliath",
         healthPoints: 700,
@@ -27,7 +27,7 @@ var terranUnits = [
         image: "assets/images/goliath.jpg"
     },
 
-    terranThor = {
+    terranThor: {
         name: "terranThor",
         displayName: "Thor",
         healthPoints: 2000,
@@ -36,7 +36,7 @@ var terranUnits = [
         image: "assets/images/thor.jpg"
     },
 
-    terranBattlecruiser = {
+    terranBattlecruiser: {
         name: "terranBattlecruiser",
         displayName: "Battlecruiser",
         healthPoints: 5000,
@@ -44,7 +44,7 @@ var terranUnits = [
         counterAttack: 50,
         image: "assets/images/battlecruiser.jpg"
     }
-];
+};
 
 var unitTypesDiv = $("#allUnits");
 var isChosen = false;
@@ -53,23 +53,24 @@ var chosenId;
 var enemyId;
 
 //This generates a span for each object in the array
-terranUnits.forEach(function (unit) {
+// terranUnits.forEach(function (unit) {
+for (var key in terranUnits) {
     var span = document.createElement("span");
     span.setAttribute("class", "initialClickPointer clickableUnits");
-    var nameId = unit.name;
+    var nameId = terranUnits[key].name;
     span.setAttribute("id", nameId);
     var nameLabel = document.createElement("p");
-    nameLabel.textContent = unit.displayName;
+    nameLabel.textContent = terranUnits[key].displayName;
     span.appendChild(nameLabel);
     var img = document.createElement("img");
-    img.setAttribute("src", unit.image);
-    img.src = unit.image;
+    img.setAttribute("src", terranUnits[key].image);
+    img.src = terranUnits[key].image;
     span.appendChild(img);
     var hp = document.createElement("p");
-    hp.textContent = unit.healthPoints;
+    hp.textContent = terranUnits[key].healthPoints;
     span.appendChild(hp);
     unitTypesDiv.append(span);
-});
+};
 
 
 //first object selection
@@ -106,27 +107,26 @@ $(".clickableUnits").on("click", function () {
 //combat function
 $("#buttonSpot").on("click", ".fightButton", function () {
     chosenId = $(".playerSelected").attr("id");
+    chosenUnit = terranUnits[chosenId];
     if (terranUnits.indexOf(chosenId) >= 0) {
-        var chosenUnit = this;
+        var chosenAttack = chosenUnit.attackPower;
+        var chosenHp = chosenUnit.healthPoints;
+        var enemyId = $(".currentOpponent").attr("id");
+        var currentOpponent = terranUnits[enemyId];
+        var currentCounter = currentOpponent.counterAttack;
+        var currentEnemyHp = currentOpponent.healthPoints;
+        function thatHurt() {
+            chosenHp = chosenHp - currentCounter;
+        };
+        function getStronger() {
+            var currentAttack = currentAttack + chosenAttack;
+        }
+        function takeThis() {
+            currentEnemyHp = currentEnemyHp - currentAttack;
+        }
+        getStronger();
+        thatHurt();
+        takeThis();
     }
-    // var chosenAttack = chosenUnit.attackPower;
-    // var chosenHp = chosenUnit.healthPoints;
-
-    // var enemyId = $(".currentOpponent").attr("id");
-    // var currentOpponent = terranUnits[enemyId];
-    // var currentCounter = currentOpponent.counterAttack;
-    // var currentEnemyHp = currentOpponent.healthPoints;
-    // function thatHurt() {
-    //     chosenHp = chosenHp - currentCounter;
-    // };
-    // function getStronger() {
-    //     var currentAttack = currentAttack + chosenAttack;
-    // }
-    // function takeThis() {
-    //     currentEnemyHp = currentEnemyHp - currentAttack;
-    // }
-    // getStronger();
-    // thatHurt();
-    // takeThis();
 });
 
