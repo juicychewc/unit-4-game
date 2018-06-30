@@ -1,6 +1,6 @@
 var terranUnits = [
 
-    {
+    terranMarine = {
         name: "terranMarine",
         displayName: "Marine",
         healthPoints: 200,
@@ -9,7 +9,7 @@ var terranUnits = [
         image: "assets/images/marine.jpg"
     },
 
-    {
+    terranGhost = {
         name: "terranGhost",
         displayName: "Ghost",
         healthPoints: 450,
@@ -18,7 +18,7 @@ var terranUnits = [
         image: "assets/images/ghost.jpg"
     },
 
-    {
+    terranGoliath = {
         name: "terranGoliath",
         displayName: "Goliath",
         healthPoints: 700,
@@ -27,7 +27,7 @@ var terranUnits = [
         image: "assets/images/goliath.jpg"
     },
 
-    {
+    terranThor = {
         name: "terranThor",
         displayName: "Thor",
         healthPoints: 2000,
@@ -36,29 +36,33 @@ var terranUnits = [
         image: "assets/images/thor.jpg"
     },
 
-    {
+    terranBattlecruiser = {
         name: "terranBattlecruiser",
         displayName: "Battlecruiser",
         healthPoints: 5000,
         attackPower: 50,
         counterAttack: 50,
         image: "assets/images/battlecruiser.jpg"
-    }];
+    }
+];
 
 var unitTypesDiv = $("#allUnits");
 var isChosen = false;
 var enemyChosen = false;
+var chosenId;
+var enemyId;
 
 //This generates a span for each object in the array
 terranUnits.forEach(function (unit) {
     var span = document.createElement("span");
-    span.setAttribute("class", "initialClickPointer clickableUnits")
-    span.setAttribute("id", unit.name);
-    span.setAttribute("dataset", unit);
+    span.setAttribute("class", "initialClickPointer clickableUnits");
+    var nameId = unit.name;
+    span.setAttribute("id", nameId);
     var nameLabel = document.createElement("p");
     nameLabel.textContent = unit.displayName;
     span.appendChild(nameLabel);
     var img = document.createElement("img");
+    img.setAttribute("src", unit.image);
     img.src = unit.image;
     span.appendChild(img);
     var hp = document.createElement("p");
@@ -66,6 +70,7 @@ terranUnits.forEach(function (unit) {
     span.appendChild(hp);
     unitTypesDiv.append(span);
 });
+
 
 //first object selection
 $(".clickableUnits").on("click", function () {
@@ -94,22 +99,34 @@ $(".clickableUnits").on("click", function () {
                 $(fightButton).appendTo("#buttonSpot");
                 $(".currentOpponent").off("click");
             }
-
-            //combat function
-            else {
-                fightButton.on("click", function () {
-                    var chosenId = $(".playerSelected").attr("id");
-                    var chosenUnit = terranUnits[chosenId];
-
-                })
-            }
         })
-
     }
 });
 
-/*
-function getStronger() {
-    var currentAttack = $(".playerSelected")
-}
-*/
+//combat function
+$("#buttonSpot").on("click", ".fightButton", function () {
+    chosenId = $(".playerSelected").attr("id");
+    if (terranUnits.indexOf(chosenId) >= 0) {
+        var chosenUnit = this;
+    }
+    // var chosenAttack = chosenUnit.attackPower;
+    // var chosenHp = chosenUnit.healthPoints;
+
+    // var enemyId = $(".currentOpponent").attr("id");
+    // var currentOpponent = terranUnits[enemyId];
+    // var currentCounter = currentOpponent.counterAttack;
+    // var currentEnemyHp = currentOpponent.healthPoints;
+    // function thatHurt() {
+    //     chosenHp = chosenHp - currentCounter;
+    // };
+    // function getStronger() {
+    //     var currentAttack = currentAttack + chosenAttack;
+    // }
+    // function takeThis() {
+    //     currentEnemyHp = currentEnemyHp - currentAttack;
+    // }
+    // getStronger();
+    // thatHurt();
+    // takeThis();
+});
+
