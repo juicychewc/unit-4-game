@@ -22,7 +22,7 @@ body {
 }
 
 .playerSelected {
-    border-color: lightgreen;
+    border: 10px solid lightgreen;
 }
 
 .enemyUnits {
@@ -36,6 +36,20 @@ body {
     margin-left: 20px;
     text-align: center;
     font-weight: bolder;
+}
+
+#resetButton {
+    padding: 10px 50px;
+    background-color: cyan;
+    color: black;
+    margin-left: 20px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.currentOpponent {
+    border: 10px solid magenta;
+    margin: 20px;
 }
 
 img {
@@ -57,4 +71,24 @@ h2 {
     padding: 10px;
     background-color: black;
     width: 17%;
+}
+
+#combat {
+    color: white;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+#combat p {
+    margin-top: 50px;
+}
+
+#playerChoiceArea {
+    width: 40%;
+    float: left;
+}
+
+#battleZone {
+    width: 20%;
+    float: left;
 }
